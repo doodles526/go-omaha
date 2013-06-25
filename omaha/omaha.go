@@ -104,15 +104,15 @@ func (a *App) AddEvent() *Event {
 
 type UpdateCheck struct {
 	XMLName             xml.Name  `xml:"updatecheck"`
-	Urls                *Urls     `xml:"urls"`
-	Manifest            *Manifest `xml:"manifest"`
+	Urls                Urls     `xml:"urls"`
+	Manifest            Manifest `xml:"manifest"`
 	TargetVersionPrefix string    `xml:"targetversionprefix,attr,omitempty"`
 	Status              string    `xml:"status,attr,omitempty"`
 }
 
 func (u *UpdateCheck) AddUrl(codebase string) *Url {
-	if u.Urls == nil {
-		u.Urls = new(Urls)
+	if len(u.Urls.Urls) == 0 {
+		u.Urls = *new(Urls)
 	}
 	url := new(Url)
 	url.CodeBase = codebase
@@ -121,8 +121,8 @@ func (u *UpdateCheck) AddUrl(codebase string) *Url {
 }
 
 func (u *UpdateCheck) AddManifest(version string) *Manifest {
-	u.Manifest = &Manifest{Version: version}
-	return u.Manifest
+	u.Manifest = Manifest{Version: version}
+	return &u.Manifest
 }
 
 type Ping struct {
