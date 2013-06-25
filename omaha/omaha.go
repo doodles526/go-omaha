@@ -103,11 +103,11 @@ func (a *App) AddEvent() *Event {
 }
 
 type UpdateCheck struct {
-	XMLName             xml.Name  `xml:"updatecheck"`
+	XMLName             xml.Name `xml:"updatecheck"`
 	Urls                Urls     `xml:"urls"`
 	Manifest            Manifest `xml:"manifest"`
-	TargetVersionPrefix string    `xml:"targetversionprefix,attr,omitempty"`
-	Status              string    `xml:"status,attr,omitempty"`
+	TargetVersionPrefix string   `xml:"targetversionprefix,attr,omitempty"`
+	Status              string   `xml:"status,attr,omitempty"`
 }
 
 func (u *UpdateCheck) AddUrl(codebase string) *Url {
